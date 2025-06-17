@@ -1,4 +1,7 @@
 String.prototype.endsWith = function (search, position) {
+  if (search instanceof RegExp) {
+    throw new TypeError("First argument to String.prototype.endsWith must not be a regular expression")
+  }
   // normalized input & split string
   const normalizedStr = search.toString()
   if (position) {
