@@ -23,7 +23,7 @@ describe('String', function () {
     it('should throw a TypeError if given regex', function () {
       expect(() => {
         "foo".endsWith(/([A-Z])\w+/g)
-      }).to.throw(TypeError, "First argument to String.prototype.endsWith must not be a regular expression")
+      }).to.throw(TypeError, "Invalid type: first can't be a Regular Expression")
     })
 
     context('with a position argument', function () {
