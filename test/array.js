@@ -7,6 +7,20 @@ describe('Array', function() {
     it('should return undefined if the function never returns true', function() {
       expect([1,2,3].find(function(item) { return false })).to.equal(undefined)
     })
+    
+    it("should return a TypeError: cannot read properties of null (reading 'find')", function () {
+      expect(() => {
+          Array.prototype.find.call(null, x => true)
+      }).to.throw(TypeError, "Cannot read properties of null (reading 'find')")
+    })
+
+    it("should return a  TypeError: undefined is not a function", function() {
+      expect(() => [1,2,3].find()).to.throw(TypeError, "undefined is not a function")
+      expect(() => [1, 2, 3].find("not a fn")).to.throw(TypeError, "undefined is not a function")
+      expect(() => [1, 2, 3].find(null)).to.throw(TypeError, "undefined is not a function")
+      expect(() => [1, 2, 3].find({})).to.throw(TypeError, "undefined is not a function")
+    })
+
   })
 
   describe('#findIndex()', function() {
