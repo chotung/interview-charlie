@@ -25,7 +25,7 @@ Array.prototype.find = function (fn, thisArg) {
 Array.prototype.findIndex = function (fn, thisArg) {
   // edge cases
   if (this == null) {
-    throw new TypeError("Cannot read properties of null (reading 'find')")
+    throw new TypeError("Cannot read properties of null (reading 'findIndex')")
   }
 
   if (typeof fn !== 'function') {
@@ -49,7 +49,7 @@ Array.prototype.findIndex = function (fn, thisArg) {
 Array.prototype.includes = function (search) {
   // edge cases
   if (this === null || this === undefined) {
-    throw new TypeError("Cannot read properties of null (reading 'find')")
+    throw new TypeError("Cannot read properties of null (reading 'includes')")
   }
 
   for (let i = 0; i < this.length; i++) {
