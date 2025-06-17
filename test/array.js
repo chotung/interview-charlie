@@ -7,6 +7,20 @@ describe('Array', function() {
     it('should return undefined if the function never returns true', function() {
       expect([1,2,3].find(function(item) { return false })).to.equal(undefined)
     })
+
+    it('should work with empty array', function() {
+      expect([].find(x => true)).to.be.undefined
+    })
+
+    it('should return object by property', function(){
+      const posts = [
+        { id: 1, title: 'cool', version: 1 },
+        { id: 2, title: 'cool 2', version: 2 },
+        { id: 3, title: 'cool 3', version: 3 },
+      ]
+      const res = posts.find(post => post.version === 2)
+      expect(res).to.deep.equal({ id: 2, title: 'cool 2', version: 2 })
+    })
     
     it("should return a TypeError: cannot read properties of null (reading 'find')", function () {
       expect(() => {
@@ -19,6 +33,16 @@ describe('Array', function() {
       expect(() => [1, 2, 3].find("not a fn")).to.throw(TypeError, "undefined is not a function")
       expect(() => [1, 2, 3].find(null)).to.throw(TypeError, "undefined is not a function")
       expect(() => [1, 2, 3].find({})).to.throw(TypeError, "undefined is not a function")
+    })
+
+    it("should update the value of this", function() {
+      const arr = [1,2,3]
+      const context = { multi: 2}
+      const result = arr.find(function(x) {
+        return x * this.multi === 6
+      }, context)
+
+      expect(result).to.equal(3)
     })
 
   })
