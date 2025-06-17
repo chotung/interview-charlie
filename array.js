@@ -46,13 +46,16 @@ Array.prototype.findIndex = function (fn, thisArg) {
   // space is o(1) does not grow with our input size
 }
 
-Array.prototype.includes = function (search) {
+Array.prototype.includes = function (search, fromIndex) {
   // edge cases
   if (this === null || this === undefined) {
     throw new TypeError("Cannot read properties of null (reading 'includes')")
   }
 
-  for (let i = 0; i < this.length; i++) {
+  const parsedIndex = parseInt(fromIndex)
+  const start = parsedIndex ? parsedIndex : 0
+
+  for (let i = start; i <= this.length; i++) {
     const el = this[i]
     if (el === search) return true
   }

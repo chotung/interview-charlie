@@ -85,5 +85,19 @@ describe('Array', function () {
       }).to.throw(TypeError, "Cannot read properties of null (reading 'includes')")
     })
 
+    context('includes is given start index', function () {
+
+      it('should return false given an index out of range', function () {
+        expect([1, 2, 3].includes(1, 2)).to.equal(false)
+      })
+
+      it('should return true given an index in range', function () {
+        expect([1, 2, 3].includes(1, 0)).to.equal(true)
+      })
+
+      it('should return true given an index in range', function () {
+        expect([1, 2, 3].includes(3, -1)).to.equal(true)
+      })
+    })
   })
 })
